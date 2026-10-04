@@ -33,40 +33,14 @@ class Robot:
     def pridej_kloub(self, kloub):
         self.klouby.append(kloub)
 
-robutek = Robot("Miloš")
-kotnik1 = Joint("vrzavý", 30)
-kotnik2 = Joint("namazaný", 80)
-koleno = MotorizovanyKloub("ultrarychlý", 40, 250)
-robutek.pridej_kloub(kotnik1)
-robutek.pridej_kloub(kotnik2)
-robutek.pridej_kloub(koleno)
+    def vypis_stav_robota(self):
+        print(self.jmeno)
+        for kloub in self.klouby:
+            kloub.vypis_stav()
 
-for kloub in robutek.klouby:
-    kloub.vypis_stav()
+r = Robot("Miloš")
+r.pridej_kloub(Joint("koleno", 45))
+r.pridej_kloub(Joint("kotnik", 90))
+r.pridej_kloub(MotorizovanyKloub("kycel", 30, 100))
 
-print(robutek.klouby)
-print(koleno)
-
-klouby = [Joint("koleno", 45),Joint("kotnik", 90),Joint("kycel", 20),]
-
-serazene = sorted(klouby, key=lambda k: k.uhel)
-
-for kloub in serazene:
-    print(kloub)
-
-def uhly_seznam(n):
-    vysledek = []
-    for i in range(n):
-        vysledek.append(i * 10)
-    return vysledek
-
-print(uhly_seznam(5))
-
-def uhly_generator(n):
-    for i in range(n):
-        yield i * 10
-
-print(uhly_generator(5))
-
-for u in uhly_generator(5):
-    print(u)
+r.vypis_stav_robota()
